@@ -1,9 +1,9 @@
 <?php
 
-namespace Arch\Testing\Controller;
+namespace Fernanda\SamplePsr4Php\Controller;
 
-use Arch\Testing\DAO\ProdutoDAO;
-use Arch\Testing\Model\ProdutoModel;
+use Fernanda\SamplePsr4Php\DAO\ProdutoDAO;
+use Fernanda\SamplePsr4Php\Model\ProdutoModel;
 
 class ProdutoController
 {
@@ -11,4 +11,11 @@ class ProdutoController
     {
         new ProdutoDAO($produto);
     }
+}
+
+if (isset($_POST['Enviar'])) {
+    $produto = new ProdutoModel;
+    $produto->setNome($_POST['nome']);
+    $produtoController = new ProdutoController();
+    $produtoController->criarProduto($produto);
 }

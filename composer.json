@@ -1,20 +1,15 @@
 {
-    "name": "arch/testing",
-    "description": "Teste",
-    "type": "project",
-    "license": "GPL",
+    "name": "fernanda/sample_psr4_php",
     "autoload": {
         "psr-4": {
-            "Arch\\Testing\\": "src/"
+            "Fernanda\\SamplePsr4Php\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "victor4pinheiro",
-            "email": "victor.pinheiro.soft@gmail.com"
+            "name": "Fernandafmsf",
+            "email": "fernandafernandesauto@gmail.com"
         }
     ],
-    "require": {
-        "vlucas/phpdotenv": "^5.5"
-    }
+    "require": {}
 }

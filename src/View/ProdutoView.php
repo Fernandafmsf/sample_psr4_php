@@ -8,20 +8,11 @@
 </head>
 
 <body>
-    <form method="post">
-        <input type="text" name="teste" id="teste">
-        <button type="submit">Enviar</button>
+    <form method="post" action="../Controller/ProdutoController.php">
+        <label>Nome</label>
+        <input type="text" name="nome">
+        <button type="submit" name="Enviar">Enviar</button>
     </form>
 </body>
 
 </html>
-
-<?php
-
-if (isset($_POST['teste'])) {
-    $produto = new \Arch\Testing\Model\ProdutoModel($_POST['teste']);
-    $produtoController = new \Arch\Testing\Controller\ProdutoController();
-    $produtoController->criarProduto($produto);
-}
-
-?>
