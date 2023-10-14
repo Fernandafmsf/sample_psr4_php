@@ -9,8 +9,9 @@
 
 <body>
     <form method="post">
-        <input type="text" name="teste" id="teste">
-        <button type="submit">Enviar</button>
+        <label>Nome</label>
+        <input type="text" name="nome">
+        <button type="submit" name="Enviar">Enviar</button>
     </form>
 </body>
 
@@ -18,10 +19,15 @@
 
 <?php
 
-if (isset($_POST['teste'])) {
-    $produto = new \Arch\Testing\Model\ProdutoModel($_POST['teste']);
-    $produtoController = new \Arch\Testing\Controller\ProdutoController();
-    $produtoController->criarProduto($produto);
+use Fernanda\SamplePsr4Php\Controller\ProdutoController;
+use Fernanda\SamplePsr4Php\Model\ProdutoModel;
+
+if (isset($_POST['Enviar'])) {
+    $produto = new ProdutoModel;
+    $produto->setNome($_POST['nome']); //enviando input pro ProdutoModel, vai definir como nome do objeto
+    $produtoController = new ProdutoController;
+
+    $produtoController->criarProduto($produto); 
 }
 
 ?>

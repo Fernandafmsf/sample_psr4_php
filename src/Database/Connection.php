@@ -1,31 +1,38 @@
 <?php
 
-namespace Arch\Testing\Database;
+namespace Fernanda\SamplePsr4Php\Database;
 
 use PDO;
+use PDOException;
+
 
 class Connection
 {
-    static $conexao;
-    private function __construct()
-    {
-    }
+  const HOST = 'localhost:3306';
+  const DB = 'teste2';
+  const USER = 'admin';
+  const PASSWORD = 'admin';
+  const table = "teste";
 
-    static function conectar()
-    {
-        if (self::$conexao === null) {
-            try {
-                self::$conexao = new PDO(
-                    $_ENV['DB_CONNECTION'] .
-                    ':host=' . $_ENV['DB_HOST'] .
-                    ';dbname=' . $_ENV['DB_DATABASE'],
-                    $_ENV['DB_USERNAME'],
-                    $_ENV['DB_PASSWORD']
-                );
-            } catch (\Throwable $th) {
-                echo "Ops.... houve um problema nos nossos servidores! Mensagem: " . $th->getMessage();
-            }
-        }
-        return self::$conexao;
+  static $conexao;
+
+  public function __construct()
+  {
+  }
+
+  static function getConnection()
+  {
+    if(self::$conexao === null){
+    try {
+      $db = new PDO("mysql:host=" . self::HOST . "; dbname=" . self::DB, self::USER, self::PASSWORD);
+
+      $conexao=$db;
+      
+    } catch (PDOException $e) {
+      throw new PDOException($e);
+     
     }
+  }
+    return self::$conexao;
+}
 }

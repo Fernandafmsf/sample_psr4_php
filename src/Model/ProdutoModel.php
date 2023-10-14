@@ -1,18 +1,16 @@
 <?php
 
-namespace Arch\Testing\Model;
+namespace Fernanda\SamplePsr4Php\Model;
 
 class ProdutoModel
 {
-    private string $teste;
-
-    public function __construct($atributo)
-    {
-        $this->teste = $atributo;
+    public $nome;
+    
+    public function setNome($nome){
+        $this->nome=$nome;
     }
-
-    public function getTeste()
+    public function getNome()
     {
-        return $this->teste;
+       return $this->nome;
     }
 }

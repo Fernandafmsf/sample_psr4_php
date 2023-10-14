@@ -1,21 +1,22 @@
 <?php
 
-namespace Arch\Testing\DAO;
+namespace Fernanda\SamplePsr4Php\DAO;
 
-use Arch\Testing\Database\Connection;
-use Arch\Testing\Model\ProdutoModel;
+use Fernanda\SamplePsr4Php\Database\Connection;
+use Fernanda\SamplePsr4Php\Model\ProdutoModel;
 
 class ProdutoDAO
 {
     public function __construct(ProdutoModel $produto)
     {
         try {
-            $conexao = Connection::conectar();
-            $stmt = $conexao->prepare("INSERT INTO teste VALUES (?)");
-            $stmt->bindValue(1, $produto->getTeste());
+            $conexao = Connection::getConnection();
+            $query="INSERT INTO teste VALUES (:nome)";
+            $stmt = $conexao->prepare($query);
+            $stmt->bindValue(":nome", $produto->getNome());
             $stmt->execute();
         } catch (\Throwable $th) {
-            echo "Deu pau";
+            echo "Deu pau" .$th->getMessage();
         }
     }
 }
